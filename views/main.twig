@@ -1,0 +1,37 @@
+{% extends "__object.twig" %}
+
+{% block content %}
+<div class="container mt-2 mb-2">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-light" onclick="window.location.href='/windows'">Windows 11</button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/windows/image">Картинки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/windows/info">Описание</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="list-group-item">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-light" onclick="window.location.href='/linux'">Linux Ubuntu</button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/linux/image">Картинки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/linux/info">Описание</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block navigation %}{% endblock %}
