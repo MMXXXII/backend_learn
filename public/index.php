@@ -56,11 +56,9 @@ if (preg_match("#/linux/image#", $url)) {
     $template = "__object.twig";
 }
 
-
-// $context['title'] = $title;
 $context['menu'] = $menu;
 
-// echo $twig->render($template, $context);
+
 
 if ($controller) {
     $controller->get();
