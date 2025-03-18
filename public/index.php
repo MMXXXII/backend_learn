@@ -37,23 +37,18 @@ $menu = [
 
 if ($url == "/") {
     $controller = new MainController($twig);
-} elseif (preg_match("#/windows/image#", $url)) {
-    $controller = new WindowsImageController($twig);
-} elseif (preg_match("#/windows/info#", $url)) {
+} elseif (preg_match("#^/windows/image#", $url)) {
+    $controller = new WindowsImageController($twig);    
+} elseif (preg_match("#^/windows/info#", $url)) {
     $controller = new WindowsInfoController($twig);
 } elseif (preg_match("#^/windows#", $url)) {
-    $controller = new windowsController($twig);
-} else {
-    $template = "__object.twig";
-}
-if (preg_match("#/linux/image#", $url)) {
+    $controller = new WindowsController($twig);
+} elseif (preg_match("#^/linux/image$#", $url)) {
     $controller = new LinuxImageController($twig);
-} elseif (preg_match("#/linux/info#", $url)) {
+} elseif (preg_match("#^/linux/info#", $url)) {
     $controller = new LinuxInfoController($twig);
-} elseif (preg_match("#^/linux#", $url)) {
+} elseif (preg_match("#^/linux$#", $url)) {
     $controller = new LinuxController($twig);
-} else {
-    $template = "__object.twig";
 }
 
 $context['menu'] = $menu;

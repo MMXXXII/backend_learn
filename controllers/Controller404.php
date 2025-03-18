@@ -10,4 +10,4 @@ class Controller404 extends TwigBaseController {
         http_response_code(404); 
         parent::get(); 
     }
-}
+}   
