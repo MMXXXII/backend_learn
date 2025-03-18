@@ -9,6 +9,7 @@ class LinuxImageController extends LinuxController {
 
         $context = parent::getContext();
         $context['image'] = "/images/Ubuntu_logo.svg";
+        $context['active_page'] = 'image';
         return $context;
     }
     

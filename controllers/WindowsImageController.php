@@ -6,7 +6,8 @@ class WindowsImageController extends WindowsController {
 
     public function getContext() : array {
         $context = parent::getContext(); // Наследуем базовый контекст
-        $context['image'] = "/images/Windows-Logo.png";
+        $context['image'] = "/images/Windows-11-Icon.webp";
+        $context['active_page'] = 'image';
         return $context;
     }
 }

@@ -9,6 +9,7 @@ class LinuxInfoController extends LinuxController {
 
         $context = parent::getContext();
         $context['template'] = "linux_info.twig";
+        $context['active_page'] = 'info';
         return $context;
     }
     

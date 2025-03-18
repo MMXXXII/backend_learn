@@ -9,6 +9,7 @@ class WindowsInfoController extends WindowsController {
 
         $context = parent::getContext();
         $context['template'] = "windows_info.twig";
+        $context['active_page'] = 'info';
         return $context;
     }
     
