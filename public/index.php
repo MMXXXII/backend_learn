@@ -37,18 +37,18 @@ $menu = [
 
 if ($url == "/") {
     $controller = new MainController($twig);
-} elseif (preg_match("#^/windows/image#", $url)) {
+} elseif (preg_match("#^/windows/image$#", $url)) {
     $controller = new WindowsImageController($twig);    
     $context['active_page'] = 'image'; // Страница с картинками активна
-} elseif (preg_match("#^/windows/info#", $url)) {
+} elseif (preg_match("#^/windows/info$#", $url)) {
     $controller = new WindowsInfoController($twig);
     $context['active_page'] = 'info'; // Страница с описанием активна
-} elseif (preg_match("#^/windows#", $url)) {
+} elseif (preg_match("#^/windows$#", $url)) {
     $controller = new WindowsController($twig);
 } elseif (preg_match("#^/linux/image$#", $url)) {
     $controller = new LinuxImageController($twig);
     $context['active_page'] = 'image';
-} elseif (preg_match("#^/linux/info#", $url)) {
+} elseif (preg_match("#^/linux/info$#", $url)) {
     $controller = new LinuxInfoController($twig);
     $context['active_page'] = 'info';
 } elseif (preg_match("#^/linux$#", $url)) {
