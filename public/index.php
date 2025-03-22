@@ -14,9 +14,9 @@ $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
 $twig = new \Twig\Environment($loader);
 
 $url = $_SERVER["REQUEST_URI"];
-
 $title = "";
 $template = "";
+
 $context = [];
 
 $controller = new Controller404($twig); // создаем переменную под контроллер
