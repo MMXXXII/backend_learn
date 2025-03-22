@@ -1,4 +1,6 @@
-{% extends "__object.twig" %}
+{% extends "__layout.twig" %}
+{% import 'macros.twig' as macros %}
+
 
 {% block content %}
 <div class="container mt-2 mb-2">
@@ -6,7 +8,7 @@
         <li class="list-group-item">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <button type="button" class="btn btn-light" onclick="window.location.href='/windows'">Windows 11</button>
+                    {{ macros.btn("Windows 11", "/windows", true, "btn btn-light") }}
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/windows/image">Картинки</a>
@@ -16,11 +18,11 @@
                 </li>
             </ul>
         </li>
-
+        
         <li class="list-group-item">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <button type="button" class="btn btn-light" onclick="window.location.href='/linux'">Linux Ubuntu</button>
+                    {{ macros.btn("Linux Ubuntu", "/linux", true, "btn btn-light") }}
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/linux/image">Картинки</a>
@@ -29,7 +31,7 @@
                     <a class="nav-link" href="/linux/info">Описание</a>
                 </li>
             </ul>
-        </li>
+        </li>        
     </ul>
 </div>
 {% endblock %}
