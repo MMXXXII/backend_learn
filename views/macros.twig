@@ -1,6 +1,7 @@
 {% macro btn(text, url, is_active, style_class) %}
+    {% set style_class = style_class|default('primary') %}
     {% if is_active %}
-        <a href="{{ url }}" class="btn btn-{{ style_class }} active">{{ text }}</a>
+        <a href="{{ url }}" class="btn btn-{{ style_class }}">{{ text }}</a>
     {% else %}
         <a href="{{ url }}" class="btn btn-link">{{ text }}</a>
     {% endif %}

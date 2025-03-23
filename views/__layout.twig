@@ -1,4 +1,4 @@
-
+{% import 'macros.twig' as macros %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,25 +39,23 @@
 
     <div class="container mt-4">
         <h2 class="ms-3">{{ title }}</h2> 
-
+    
         {% block navigation %}
         <div class="container mt-2 mb-2">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link {% if active_page == 'image' %}active{% endif %}" 
-                       href="{{ base_url }}/image">Картинки</a>
+                    {{ macros.btn("Картинки", base_url ~ "/image", active_page == 'image', "primary") }}
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if active_page == 'info' %}active{% endif %}" 
-                       href="{{ base_url }}/info">Описание</a>
+                <li class="nav-item ms-2"> 
+                    {{ macros.btn("Описание", base_url ~ "/info", active_page == 'info', "primary") }}
                 </li>
             </ul>
-            
         </div>
         {% endblock %}
-
+    
         {% block content %}{% endblock %}
     </div>
+    
     
 </body>
 

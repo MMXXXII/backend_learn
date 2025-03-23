@@ -1,37 +1,11 @@
 {% extends "__layout.twig" %}
 {% import 'macros.twig' as macros %}
 
-
 {% block content %}
 <div class="container mt-2 mb-2">
     <ul class="list-group">
-        <li class="list-group-item">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    {{ macros.btn("Windows 11", "/windows", true, "btn btn-light") }}
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/windows/image">Картинки</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/windows/info">Описание</a>
-                </li>
-            </ul>
-        </li>
-        
-        <li class="list-group-item">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    {{ macros.btn("Linux Ubuntu", "/linux", true, "btn btn-light") }}
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/linux/image">Картинки</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/linux/info">Описание</a>
-                </li>
-            </ul>
-        </li>        
+        {% include 'list_item.twig' with {'title': 'Windows 11', 'url': '/windows'} %}
+        {% include 'list_item.twig' with {'title': 'Linux Ubuntu', 'url': '/linux'} %}
     </ul>
 </div>
 {% endblock %}

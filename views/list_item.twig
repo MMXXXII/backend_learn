@@ -1,0 +1,15 @@
+{% import 'macros.twig' as macros %}
+
+<li class="list-group-item">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            {{ macros.btn(title, url, true, "light") }}
+        </li>
+        <li class="nav-item">
+            {{ macros.btn("Картинки", url ~ "/image", false) }}
+        </li>
+        <li class="nav-item">
+            {{ macros.btn("Описание", url ~ "/info", false) }}
+        </li>
+    </ul>
+</li>
