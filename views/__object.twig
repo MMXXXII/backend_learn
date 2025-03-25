@@ -1,4 +1,6 @@
 {% extends "__layout.twig" %}
+{% import 'macros.twig' as macros %}
+
 
 {% block content %}
 <div class="container mt-4">
@@ -6,5 +8,19 @@
     <div class="container mt-2 mb-2">
         {{ content }}
     </div>
+</div>
+{% endblock %}
+
+
+{% block navigation %}
+<div class="container mt-2 mb-2">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            {{ macros.btn("Картинки", base_url ~ "/image", active_page == 'image', "primary") }}
+        </li>
+        <li class="nav-item ms-2"> 
+            {{ macros.btn("Описание", base_url ~ "/info", active_page == 'info', "primary") }}
+        </li>
+    </ul>
 </div>
 {% endblock %}
