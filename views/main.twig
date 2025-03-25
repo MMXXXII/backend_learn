@@ -2,6 +2,10 @@
 {% import 'macros.twig' as macros %}
 
 {% block content %}
+<pre>
+    {{ dump(windows[0].title) }} <!-- добавил вывод данных -->
+    </pre>
+
 <div class="container mt-2 mb-2">
     <ul class="list-group">
         {% include 'list_item.twig' with {'title': 'Windows 11', 'url': '/windows'} %}
@@ -9,4 +13,3 @@
     </ul>
 </div>
 {% endblock %}
-

@@ -11,7 +11,10 @@ require_once "../controllers/Controller404.php";
 
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
-$twig = new \Twig\Environment($loader);
+$twig = new \Twig\Environment($loader, [
+    "debug" => true // добавляем тут debug режим
+]);
+$twig->addExtension(new \Twig\Extension\DebugExtension());
 
 $url = $_SERVER["REQUEST_URI"];
 $title = "";
@@ -19,7 +22,11 @@ $template = "";
 
 $context = [];
 
-$controller = new Controller404($twig); // создаем переменную под контроллер
+$controller = new Controller404($twig);
+
+$pdo = new PDO("mysql:host=localhost;dbname=operation_systems;charset=utf8", "root", "");
+
+
 $menu = [
     [
         "title" => "Главная",
@@ -60,5 +67,6 @@ $context['menu'] = $menu;
 
 
 if ($controller) {
+    $controller->setPDO($pdo); // а тут передаем PDO в контроллер
     $controller->get();
 }
