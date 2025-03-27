@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.card {
+    flex: 1 1 calc(20% - 15px); /* 5 колонок */
+    max-width: 18rem;
+    aspect-ratio: 1; /* Соотношение сторон 1:1 */
+    position: relative;
+    overflow: hidden; /* Чтобы ничего не выходило за границы карточки */
+    background-color: #ffffff; /* Белый фон */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Выравнивание содержимого по верхнему краю */
+}
+
+.card img {
+    width: 40%; /* Ширина картинки будет 27% от ширины карточки */
+    height: auto; /* Высота будет автоматически изменяться пропорционально ширине */
+    object-fit: contain; /* Изображение будет умещаться внутри блока, не искажая пропорции */
+    object-position: center; /* Центрирует изображение */
+    margin-top: 25px; /* Немного опускает изображение */
+    margin-bottom: 40px;
+}
+
+
+
+.card .btn-light {
+    width: 100%; /* Кнопка с классом .btn-light займет всю ширину карточки */
+    margin-bottom: -10px; /* Уменьшаем отступы между кнопками */
+}
+
+
+@media (max-width: 1200px) {
+    .card { flex: 1 1 calc(25% - 15px); } /* 4 колонки */
+}
+
+@media (max-width: 992px) {
+    .card { flex: 1 1 calc(33.33% - 15px); } /* 3 колонки */
+}
+
+@media (max-width: 768px) {
+    .card { flex: 1 1 calc(50% - 15px); } /* 2 колонки */
+}
+
+@media (max-width: 576px) {
+    .card { flex: 1 1 100%; } /* 1 колонка */
+}

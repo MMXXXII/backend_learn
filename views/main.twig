@@ -2,14 +2,29 @@
 {% import 'macros.twig' as macros %}
 
 {% block content %}
-<pre>
-    {{ dump(windows[0].title) }} <!-- добавил вывод данных -->
-    </pre>
 
 <div class="container mt-2 mb-2">
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+        {% for window in windows %}
+            <div class="card">
+                <img src="{{ window.image }}" class="card-img-top" alt="{{ window.title }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        {{ macros.btn(window.title, url, true, "light") }}
+                    </h5>
+                    {{ macros.btn("Картинки", url ~ "#", false) }}
+                    {{ macros.btn("Описание", url ~ "#", false) }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{# <div class="container mt-2 mb-2">
     <ul class="list-group">
         {% include 'list_item.twig' with {'title': 'Windows 11', 'url': '/windows'} %}
         {% include 'list_item.twig' with {'title': 'Linux Ubuntu', 'url': '/linux'} %}
     </ul>
-</div>
+</div>   #}
 {% endblock %}
