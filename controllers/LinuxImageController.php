@@ -1,5 +1,5 @@
 <?php
-require_once "LinuxController.php"; // импортим TwigBaseController
+// require_once "LinuxController.php"; // импортим TwigBaseController
 
 class LinuxImageController extends LinuxController {
     public $template = "image.twig";

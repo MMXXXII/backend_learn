@@ -1,5 +1,5 @@
 <?php
-require_once "LinuxInfoController.php"; // импортим TwigBaseController
+// require_once "LinuxInfoController.php"; // импортим TwigBaseController
 
 class LinuxInfoController extends LinuxController {
     public $template = "linux_info.twig";

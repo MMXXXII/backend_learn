@@ -1,16 +1,15 @@
 {% extends "__layout.twig" %}
 {% import 'macros.twig' as macros %}
 
-
 {% block content %}
 <div class="container mt-4">
-    <p>{{ description }}</p>    
-    <div class="container mt-2 mb-2">
-        {{ content }}
-    </div>
+    <p>{{ description }}</p> <!-- Описание теперь будет отображаться сверху -->
+</div>
+
+<div class="container mt-2 mb-2">
+    {{ content }} <!-- Основной контент (картинки и т.д.) -->
 </div>
 {% endblock %}
-
 
 {% block navigation %}
 <div class="container mt-2 mb-2">

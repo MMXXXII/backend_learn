@@ -1,5 +1,5 @@
 <?php
-require_once "WindowsInfoController.php"; // импортим TwigBaseController
+// require_once "WindowsInfoController.php"; // импортим TwigBaseController
 
 class WindowsInfoController extends WindowsController {
     public $template = "windows_info.twig";

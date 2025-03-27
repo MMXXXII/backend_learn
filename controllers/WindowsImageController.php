@@ -1,5 +1,5 @@
 <?php
-require_once "WindowsController.php"; // импортим TwigBaseController
+// require_once "WindowsController.php"; // импортим TwigBaseController
 
 class WindowsImageController extends WindowsController {
     public $template = "image.twig";

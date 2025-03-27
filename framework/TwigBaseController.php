@@ -12,9 +12,8 @@ class TwigBaseController extends BaseController {
     // это кстати Dependency Injection называется
     // это лучше чем создавать глобальный объект $twig 
     // и быстрее чем создавать персональный $twig обработчик для каждого класс 
-    public function __construct($twig)
-    {
-        $this->twig = $twig; // пробрасываем его внутрь
+    public function setTwig($twig) {
+        $this->twig = $twig;
     }
     
     // переопределяем функцию контекста

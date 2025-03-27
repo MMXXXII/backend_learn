@@ -1,5 +1,5 @@
 <?php
-require_once "TwigBaseController.php"; // импортим TwigBaseController
+// require_once "TwigBaseController.php"; // импортим TwigBaseController
 
 class MainController extends TwigBaseController {
     public $template = "main.twig";
@@ -11,10 +11,10 @@ class MainController extends TwigBaseController {
         
         // подготавливаем запрос SELECT * FROM space_objects
         // вообще звездочку не рекомендуется использовать, но на первый раз пойдет
-        $query = $this->pdo->query("SELECT * FROM windows");
+        $query = $this->pdo->query("SELECT * FROM os_list");
         
         // стягиваем данные через fetchAll() и сохраняем результат в контекст
-        $context['windows'] = $query->fetchAll();
+        $context['os_list'] = $query->fetchAll();
 
         return $context;
     }
