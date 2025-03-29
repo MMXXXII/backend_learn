@@ -39,10 +39,11 @@
 
     <div class="container mt-4">
         <h2 class="ms-3">{{ title }}</h2> 
-    
-        {% block navigation %}
+        {% block description %}{% endblock %}
 
-        {% endblock %}
+        {# {% block title %}{% endblock %} #}
+
+        {% block navigation %}{% endblock %}
     
         {% block content %}{% endblock %}
     </div>

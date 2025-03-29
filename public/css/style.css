@@ -1,8 +1,17 @@
 .container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; /* Выравнивание элементов влево */
+    text-align: left; /* Выравнивание текста влево */
+    width: 100%; /* Растягиваем на всю ширину */
+    margin-top: 20px; /* Убедимся, что контент не идет вплотную к верхнему краю */
+}
+
+.left-align-container {
+    align-items: flex-start !important;
+    text-align: left !important;
+    margin-bottom: 20px; /* Добавим немного пространства между элементами */
 }
 
 .card {
@@ -14,24 +23,24 @@
     background-color: #ffffff; /* Белый фон */
     display: flex;
     justify-content: center;
-    align-items: center; /* Выравнивание содержимого по верхнему краю */
+    align-items: center; /* Выравнивание содержимого по центру */
 }
 
 .card img {
-    width: 40%; /* Ширина картинки будет 27% от ширины карточки */
+    width: 40%; /* Ширина картинки */
     height: auto; /* Высота будет автоматически изменяться пропорционально ширине */
     object-fit: contain; /* Изображение будет умещаться внутри блока, не искажая пропорции */
     object-position: center; /* Центрирует изображение */
-    margin-top: 20px; /* Немного опускает изображение */
+    margin-top: 20px;
     margin-bottom: 40px;
 }
 
 .card .btn-light {
-    width: 100%; /* Кнопка с классом .btn-light займет всю ширину карточки */
+    width: 100%; /* Кнопка занимает всю ширину карточки */
     margin-bottom: -10px; /* Уменьшаем отступы между кнопками */
 }
 
-/* Выравнивание кнопок в строку */
+/* Для выравнивания кнопок в строку */
 .btn-container {
     display: flex;
     justify-content: center;

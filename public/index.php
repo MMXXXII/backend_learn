@@ -25,7 +25,9 @@ $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
 $router->add("/windows", WindowsController::class);
 
-$router->add("/os_list/(?P<id>\d+)", ObjectController::class); 
+$router->add("/os_list/(?P<id>\d+)", ObjectController::class);
+
+
 
 
 $router->get_or_default(Controller404::class);
