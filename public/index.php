@@ -3,11 +3,9 @@ require_once "../vendor/autoload.php";
 require_once "../framework/autoload.php";
 require_once "../controllers/MainController.php"; 
 require_once "../controllers/WindowsController.php";
-require_once "../controllers/WindowsImageController.php";
-require_once "../controllers/WindowsInfoController.php";
+require_once "../controllers/ImageController.php";
+require_once "../controllers/InfoController.php";
 require_once "../controllers/LinuxController.php";
-require_once "../controllers/LinuxImageController.php";
-require_once "../controllers/LinuxInfoController.php";
 require_once "../controllers/Controller404.php"; 
 require_once "../controllers/ObjectController.php";
 
@@ -25,7 +23,9 @@ $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
 $router->add("/windows", WindowsController::class);
 
-$router->add("/os_list/(?P<id>\d+)", ObjectController::class); 
+$router->add("/os_list/(?P<id>.*)", ObjectController::class); 
+$router->add("/os_list/(?P<id>.*)/image", ImageController::class); // Обработчик для изображения
+$router->add("/os_list/(?P<id>.*)/info", InfoController::class);   // Обработчик для информации
 
 
 $router->get_or_default(Controller404::class);

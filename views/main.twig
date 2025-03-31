@@ -10,11 +10,11 @@
                 <img src="{{ system.image }}" class="card-img-top" alt="{{ system.title }}">
                 <div class="card-body text-center">
                     <h5 class="card-title">
-                        {{ macros.btn(system.title, url, true, "light") }}
+                        {{ macros.btn(system.title, url ~ '/os_list/' ~ system.id, true, "light") }}
                     </h5>
                     <div class="btn-container">
-                        {{ macros.btn("Картинки", url ~ "#", false) }}
-                        {{ macros.btn("Описание", url ~ "#", false) }}
+                        {{ macros.btn("Картинки", url ~ '/os_list/' ~ system.id ~ '/image', false) }}
+                        {{ macros.btn("Описание", url ~ '/os_list/' ~ system.id ~ '/info', false) }}
                     </div>
                 </div>
             </div>
