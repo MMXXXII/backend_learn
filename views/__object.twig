@@ -2,24 +2,24 @@
 {% import 'macros.twig' as macros %}
 
 {% block navigation %}
-<div class="container mt-2 mb-2" style="margin-right: 900px;"> <!-- Добавлен отрицательный отступ для смещения влево -->
+<div class="container mt-2 mb-2"> 
     <div class="container mt-2 mb-2">
         <p class="description-text">{{ description }}</p>
     </div>
-    <!-- Описание с отдельным классом для выравнивания -->
     <ul class="nav nav-pills">
         <li class="nav-item">
-            {{ macros.btn("Картинки", url ~ '/os_list/' ~ id ~ '/image', false) }}
+            {{ macros.btn("Картинки", '/os_list/' ~ id ~ '/image', active_page == 'image') }}
         </li>
         <li class="nav-item ms-2">
-            {{ macros.btn("Описание", url ~ '/os_list/' ~ id ~ '/info', false) }}
+            {{ macros.btn("Описание", '/os_list/' ~ id ~ '/info', active_page == 'info') }}
         </li>
     </ul>
 </div>
 {% endblock %}
 
+
 {% block content %}
-<div class="container mt-2 mb-2" style="margin-right: 900px;"> <!-- Добавлен отрицательный отступ для смещения влево -->
-    {{ content }} <!-- Основной контент (картинки и т.д.) -->
+<div class="container mt-2 mb-2" style="margin-right: 900px;">
+    {{ content }} 
 </div>
 {% endblock %}

@@ -23,9 +23,9 @@ $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
 $router->add("/windows", WindowsController::class);
 
-$router->add("/os_list/(?P<id>.*)", ObjectController::class); 
-$router->add("/os_list/(?P<id>.*)/image", ImageController::class); // Обработчик для изображения
-$router->add("/os_list/(?P<id>.*)/info", InfoController::class);   // Обработчик для информации
+$router->add("/os_list/(?P<id>\d+)", ObjectController::class); 
+$router->add("/os_list/(?P<id>\d+)/image", ImageController::class); 
+$router->add("/os_list/(?P<id>\d+)/info", InfoController::class);   
 
 
 $router->get_or_default(Controller404::class);
