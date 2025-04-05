@@ -1,7 +1,7 @@
 <?php
-// require_once "TwigBaseController.php";
 
-class Controller404 extends TwigBaseController {
+require_once "BaseOSTwigController.php"; // импортим TwigBaseController
+class Controller404 extends BaseOSTwigController {
     public $template = "404.twig";
     public $title = "404";
 

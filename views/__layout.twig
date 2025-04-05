@@ -32,22 +32,32 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/linux"><i class="fa-brands fa-linux"></i> Linux Ubuntu</a>
                     </li>
+
+                    {% for type in types %}
+                    <li class="nav-item">
+                        <!-- type.type -- выдает тип, 
+                               а добавление |title делает первую букву с слова большой  -->
+                        <a class="nav-link" href="#">{{ type.type|title }}</a>
+                    </li>
+                    {% endfor %}
+
+
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="container mt-4">
-        <h2 class="ms-3">{{ title }}</h2> 
-    
+        <h2 class="ms-3">{{ title }}</h2>
+
         {% block navigation %}
 
         {% endblock %}
-    
+
         {% block content %}{% endblock %}
     </div>
-    
-    
+
+
 </body>
 
 </html>

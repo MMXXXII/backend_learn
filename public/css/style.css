@@ -1,10 +1,8 @@
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
     gap: 15px;
     padding: 0; /* Убираем внутренние отступы */
-    margin: 0; /* Убираем внешние отступы */
 }
 
 .card {
@@ -52,7 +50,6 @@
     display: flex;
     justify-content: flex-start; /* Выравнивание по левому краю */
     padding: 0; /* Убираем внутренние отступы */
-    margin: 0; /* Убираем внешние отступы */
 }
 
 

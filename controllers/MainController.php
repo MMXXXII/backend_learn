@@ -1,7 +1,7 @@
 <?php
-// require_once "TwigBaseController.php"; // импортим TwigBaseController
+require_once "BaseOSTwigController.php"; // импортим TwigBaseController
 
-class MainController extends TwigBaseController {
+class MainController extends BaseOSTwigController {
     public $template = "main.twig";
 
 
