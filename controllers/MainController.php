@@ -11,13 +11,13 @@ class MainController extends BaseOSTwigController
         $context = parent::getContext();
 
         if (isset($_GET['type'])) {
-            $stmt = $this->pdo->prepare("SELECT * FROM os_list WHERE type = :type");
-            $stmt->bindValue(':type', $_GET['type']);
-            $stmt->execute();
+            $query = $this->pdo->prepare("SELECT * FROM os_list WHERE type = :type");
+            $query->bindValue(':type', $_GET['type']);
+            $query->execute();
         } else {
-            $stmt = $this->pdo->query("SELECT * FROM os_list");
+            $query = $this->pdo->query("SELECT * FROM os_list");
         }
-        $context['os_list'] = $stmt->fetchAll();
+        $context['os_list'] = $query->fetchAll();
 
         return $context;
     }

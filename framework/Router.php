@@ -1,12 +1,10 @@
 <?php
 
-// сначала создадим класс под один маршрут
 class Route
 {
-    public string $route_regexp; // тут получается шаблона url
-    public $controller; // а это класс контроллера
+    public string $route_regexp; 
+    public $controller;
 
-    // ну и просто конструктор
     public function __construct($route_regexp, $controller)
     {
         $this->route_regexp = $route_regexp;
@@ -19,9 +17,9 @@ class Router
     /**
      * @var Route[]
      */
-    protected $routes = []; // создаем поле -- список под маршруты и привязанные к ним контроллеры
+    protected $routes = [];
 
-    protected $twig; // переменные под twig и pdo
+    protected $twig; 
     protected $pdo;
 
     // конструктор
@@ -31,33 +29,24 @@ class Router
         $this->pdo = $pdo;
     }
 
-    // функция с помощью которой добавляем маршрут
     public function add($route_regexp, $controller)
     {
-        // обернул тут в #^ и $#
         array_push($this->routes, new Route("#^$route_regexp$#", $controller));
     }
 
-    // функция которая должна по url найти маршрут и вызывать его функцию get
-    // если маршрут не найден, то будет использоваться контроллер по умолчанию
     public function get_or_default($default_controller)
     {
-        $url = $_SERVER["REQUEST_URI"]; // получили url
+        $url = $_SERVER["REQUEST_URI"];
         
-        $path = parse_url($url, PHP_URL_PATH); // вытаскиваем адрес
+        $path = parse_url($url, PHP_URL_PATH); 
 
         $controller = $default_controller;
-        // фиксируем в контроллер $default_controller
         $controller = $default_controller;
 
         $matches = [];
-        // проходим по списку $routes 
         foreach ($this->routes as $route) {
-            // проверяем подходит ли маршрут под шаблон
             if (preg_match($route->route_regexp, $path, $matches)) {
-                // если подходит, то фиксируем привязанные к шаблону контроллер 
                 $controller = $route->controller;
-                // и выходим из цикла
                 break;
             }
         }
@@ -69,7 +58,7 @@ class Router
         if ($controllerInstance instanceof TwigBaseController) {
             $controllerInstance->setTwig($this->twig);
         }
-        // вызываем
+
         return $controllerInstance->get();
     }
 }

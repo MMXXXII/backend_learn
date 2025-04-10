@@ -8,10 +8,10 @@
     </div>
     <ul class="nav nav-pills">
         <li class="nav-item">
-            {{ macros.btn("Картинки", '/os_list/' ~ id ~ '/image', active_page == 'image') }}
+            {{ macros.btn("Картинки", '/os_list/' ~ id ~ '?show=image', active_page == 'image') }}
         </li>
         <li class="nav-item ms-2">
-            {{ macros.btn("Описание", '/os_list/' ~ id ~ '/info', active_page == 'info') }}
+            {{ macros.btn("Описание", '/os_list/' ~ id ~ '?show=info', active_page == 'info') }}
         </li>
     </ul>
 </div>
@@ -23,3 +23,16 @@
     {{ content }} 
 </div>
 {% endblock %}
+
+{# 
+{% block content %}
+<div class="container mt-2 mb-2">
+    {% if active_page == 'image' and image %}
+        <img src="{{ image }}" alt="OS Image" class="img-fluid">
+    {% elseif active_page == 'info' and info %}
+        <div class="info-content">
+            {{ info|raw }}
+        </div>
+{% endif %}
+</div>
+{% endblock %} #}
