@@ -1,20 +1,23 @@
 <?php
 require_once "BaseOSTwigController.php"; // импортим TwigBaseController
 
-class MainController extends BaseOSTwigController {
+class MainController extends BaseOSTwigController
+{
     public $template = "main.twig";
 
 
     public function getContext(): array
     {
         $context = parent::getContext();
-        
-        // подготавливаем запрос SELECT * FROM space_objects
-        // вообще звездочку не рекомендуется использовать, но на первый раз пойдет
-        $query = $this->pdo->query("SELECT * FROM os_list");
-        
-        // стягиваем данные через fetchAll() и сохраняем результат в контекст
-        $context['os_list'] = $query->fetchAll();
+
+        if (isset($_GET['type'])) {
+            $stmt = $this->pdo->prepare("SELECT * FROM os_list WHERE type = :type");
+            $stmt->bindValue(':type', $_GET['type']);
+            $stmt->execute();
+        } else {
+            $stmt = $this->pdo->query("SELECT * FROM os_list");
+        }
+        $context['os_list'] = $stmt->fetchAll();
 
         return $context;
     }

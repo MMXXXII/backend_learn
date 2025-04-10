@@ -2,10 +2,8 @@
 require_once "../vendor/autoload.php";
 require_once "../framework/autoload.php";
 require_once "../controllers/MainController.php"; 
-require_once "../controllers/WindowsController.php";
 require_once "../controllers/ImageController.php";
 require_once "../controllers/InfoController.php";
-require_once "../controllers/LinuxController.php";
 require_once "../controllers/Controller404.php"; 
 require_once "../controllers/ObjectController.php";
 
@@ -19,9 +17,10 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 
 $pdo = new PDO("mysql:host=localhost;dbname=operation_systems;charset=utf8", "root", "");
 
+
 $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
-$router->add("/windows", WindowsController::class);
+
 
 $router->add("/os_list/(?P<id>\d+)", ObjectController::class); 
 $router->add("/os_list/(?P<id>\d+)/image", ImageController::class); 

@@ -11,6 +11,8 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
 
+
+
 </head>
 
 <body>
@@ -26,22 +28,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/"><i class="fa-solid fa-house"></i> Главная</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/windows"><i class="fa-brands fa-windows"></i> Windows 11</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/linux"><i class="fa-brands fa-linux"></i> Linux Ubuntu</a>
-                    </li>
-
                     {% for type in types %}
                     <li class="nav-item">
-                        <!-- type.type -- выдает тип, 
-                               а добавление |title делает первую букву с слова большой  -->
-                        <a class="nav-link" href="#">{{ type.type|title }}</a>
+                        <a class="nav-link" href="/?type={{ type.type }}">{{ type.type|title }}</a>
                     </li>
                     {% endfor %}
-
-
                 </ul>
             </div>
         </div>
@@ -50,9 +41,7 @@
     <div class="container mt-4">
         <h2 class="ms-3">{{ title }}</h2>
 
-        {% block navigation %}
-
-        {% endblock %}
+        {% block navigation %}{% endblock %}
 
         {% block content %}{% endblock %}
     </div>
