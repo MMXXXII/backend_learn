@@ -41,7 +41,6 @@ class Router
         $path = parse_url($url, PHP_URL_PATH); 
 
         $controller = $default_controller;
-        $controller = $default_controller;
 
         $matches = [];
         foreach ($this->routes as $route) {

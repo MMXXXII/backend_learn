@@ -1,0 +1,15 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+Поиск
+
+<form action="">
+    <select name="object_type">
+        <option value="Unix-Based">Unix-Based</option>
+        <option value="Windows-Based">Windows-Based</option>
+    </select>
+    <label>Название <input type="text" name="title"></label>
+    <button type="submit">Найти</button>
+</form>
+
+{% endblock %}

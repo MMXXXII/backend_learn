@@ -33,8 +33,6 @@ class ObjectController extends BaseOSTwigController
             }
         }
 
-        
-
         return $context;
     }
 }
