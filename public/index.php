@@ -5,6 +5,8 @@ require_once "../controllers/MainController.php";
 require_once "../controllers/Controller404.php"; 
 require_once "../controllers/ObjectController.php";
 require_once "../controllers/SearchController.php";
+require_once "../controllers/OperationSystemsCreateController.php";
+
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
 $twig = new \Twig\Environment($loader, [
@@ -21,7 +23,7 @@ $router->add("/", MainController::class);
 $router->add("/search", SearchController::class);
 
 $router->add("/os_list/(?P<id>\d+)", ObjectController::class); 
- 
+$router->add("/os_list/create", OperationSystemsCreateController::class);
 
 
 $router->get_or_default(Controller404::class);

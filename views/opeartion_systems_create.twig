@@ -1,0 +1,47 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+<h2 class="col-12">Добавление объекта информационных систем</h2>
+<hr>
+
+{% if message %}
+<div class="col-12">
+    <div class="alert alert-info" style="margin-top: 1rem;">
+        {{ message }}
+        <a href="/os_list/{{id}}">Открыть новый объект</a>
+    </div>
+</div>
+{% endif %}
+
+
+
+<form action="" enctype="multipart/form-data" method="POST" class="row g-3" style="width: 100%;">
+    <div class="col-md-4">
+        <label class="form-label" >Название</label>
+        <input type="text" class="form-control" name="title">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Краткое описание</label>
+        <input type="text" class="form-control" name="description">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Тип</label>
+        <select class="form-control" name="type">
+            <option value="Windows-based">Windows-Based</option>
+            <option value="Unix-based">Unix-Based</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="formlabel" class="form-label">Картинка</label>
+        <input class="form-control" type="file" name="image">
+      </div>
+
+    <div class="col-12">
+        <textarea name="info" placeholder="Полное описание..." class="form-control" rows="5"></textarea>
+    </div>
+    <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </div>
+</form>
+
+{% endblock %}

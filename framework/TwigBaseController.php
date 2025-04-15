@@ -29,14 +29,16 @@ class TwigBaseController extends BaseController
         $currentPage = isset($_GET['show']) ? $_GET['show'] : '';
         $context['active_page'] = $currentPage;
 
+        
         return $context;
     }
 
 
     // функция гет, рендерит результат используя $template в качестве шаблона
     // и вызывает функцию getContext для формирования словаря контекста
-    public function get()
-    {
+
+
+    public function get(array $context){
         if (isset($_GET['show'])) {
             if ($_GET['show'] === 'image') {
                 $this->template = "image.twig";
@@ -44,7 +46,9 @@ class TwigBaseController extends BaseController
                 $this->template = "info.twig";
             }
         }
-
-        echo $this->twig->render($this->template, $this->getContext());
+        echo $this->twig->render($this->template, $context);
     }
+
 }
+
+

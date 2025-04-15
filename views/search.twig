@@ -3,8 +3,8 @@
 {% block content %}
 <h2 class="col-12">Поиск</h2>
 
-<form class="row g-3 mb-4" method="get">
-    <div class="col-md-3">
+<form class="row g-2" style="width: 100%;" method="get">
+    <div class="col-md-2">
         <label for="type" class="form-label">Тип</label>
         <select id="type" name="os_type" class="form-select">
             <option value="" {% if os_type == '' %}selected{% endif %}>Все</option>
@@ -13,12 +13,12 @@
         </select>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
         <label for="title" class="form-label">Название</label>
         <input type="text" id="title" name="title" value="{{ title }}" class="form-control">
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
         <label for="info" class="form-label">Описание</label>
         <input type="text" id="info" name="info" value="{{ info }}" class="form-control">
     </div>
