@@ -18,14 +18,4 @@
 {% endblock %}
 
 
-{% block content %}
-<div class="container mt-2 mb-2">
-    {% if active_page == 'image' and image %}
-        <img src="{{ image }}" alt="OS Image" class="img-fluid">
-    {% elseif active_page == 'info' and info %}
-        <div class="info-content">
-            {{ info|raw }}
-        </div>
-{% endif %}
-</div>
-{% endblock %}
+{% block content %}{% endblock %}

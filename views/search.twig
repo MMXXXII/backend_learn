@@ -1,15 +1,43 @@
 {% extends "__layout.twig" %}
 
 {% block content %}
-Поиск
+<h2 class="col-12">Поиск</h2>
 
-<form action="">
-    <select name="object_type">
-        <option value="Unix-Based">Unix-Based</option>
-        <option value="Windows-Based">Windows-Based</option>
-    </select>
-    <label>Название <input type="text" name="title"></label>
-    <button type="submit">Найти</button>
+<form class="row g-3 mb-4" method="get">
+    <div class="col-md-3">
+        <label for="type" class="form-label">Тип</label>
+        <select id="type" name="os_type" class="form-select">
+            <option value="" {% if os_type == '' %}selected{% endif %}>Все</option>
+            <option value="unix-based" {% if os_type == 'unix-based' %}selected{% endif %}>Unix-Based</option>
+            <option value="windows-based" {% if os_type == 'windows-based' %}selected{% endif %}>Windows-Based</option>
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <label for="title" class="form-label">Название</label>
+        <input type="text" id="title" name="title" value="{{ title }}" class="form-control">
+    </div>
+
+    <div class="col-md-3">
+        <label for="info" class="form-label">Описание</label>
+        <input type="text" id="info" name="info" value="{{ info }}" class="form-control">
+    </div>
+
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Найти</button>
+    </div>
 </form>
+
+<div class="col-12">
+    <ul class="list-group">
+        {% for os in os_list %}
+            <li class="list-group-item">
+                <a href="/os_list/{{ os.id }}">{{ os.title }}</a>
+            </li>
+        {% else %}
+            <li class="list-group-item text-muted">Ничего не найдено</li>
+        {% endfor %}
+    </ul>
+</div>
 
 {% endblock %}
