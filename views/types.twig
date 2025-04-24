@@ -5,29 +5,28 @@
 <hr>
 
 {% if message %}
-<div class="col-12">
-    <div class="alert alert-info" style="margin-top: 1rem;">
-        {{ message }}
-        <a>Создан новый тип</a>
-    </div>
-</div>
+    <div class="alert alert-info">{{ message }}</div>
 {% endif %}
 
 
 
-<form action="" enctype="multipart/form-data" method="POST" class="row g-3" style="width: 100%;">
-    <div class="col-md-4">
+
+<form action="" enctype="multipart/form-data" method="POST" class="row align-items-end g-2">
+    <div class="col-md-3">
         <label class="form-label">Название</label>
         <input type="text" class="form-control" name="title" value="{{ object.title }}">
     </div>
-    <div class="mb-3">
-        <label for="formlabel" class="form-label">Картинка</label>
+
+    <div class="col-md-8">
+        <label class="form-label">Картинка</label>
         <input class="form-control" type="file" name="image">
     </div>
 
-    <div class="col-12 text-end">
-        <button type="submit" class="btn btn-primary">Добавить</button>
+    <div class="col-md-1 text-end">
+        <button type="submit" class="btn btn-primary w-100">Добавить</button>
     </div>
 </form>
+
+
 
 {% endblock %}

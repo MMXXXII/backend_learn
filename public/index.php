@@ -42,7 +42,8 @@ $router->add("/os_list/(?P<id>\d+)/edit", OperationSystemsUpdateController::clas
     ->middleware(new LoginRequiredMiddleware());
 $router->add("/os_list/types", OperationSystemsTypeController::class)
     ->middleware(new LoginRequiredMiddleware());
-$router->add("/set-welcome/", SetWelcomeController::class);
+$router->add("/set-welcome/", SetWelcomeController::class)
+->middleware(new LoginRequiredMiddleware());
 
 
 

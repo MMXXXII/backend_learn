@@ -6,8 +6,10 @@ class LoginRequiredMiddleware extends BaseMiddleware {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        
-        if (empty($_SESSION["is_logged"])) {
+
+        $is_logged = isset($_SESSION["is_logged"]) && $_SESSION["is_logged"];
+        if (!$is_logged)
+        {
             header("Location: /login");
             exit;
         }
