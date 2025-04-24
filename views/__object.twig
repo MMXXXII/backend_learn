@@ -1,22 +1,57 @@
 {% extends "__layout.twig" %}
 {% import 'macros.twig' as macros %}
 
+
 {% block navigation %}
-<div class="container mt-2 mb-2">
-    <div class="container mt-2 mb-2">
-        <p class="description-text">{{ description }}</p>
+<div class="d-flex gap-4">
+    <!-- Левая часть: сообщения и описание -->
+    <div class="flex-grow-1 container mt-2 mb-2">
+        {% if my_session_message %}
+        <div style="background-color: #e9f7fe; border: 1px solid #bde5f8; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 100%;">
+
+            <strong>Сообщение:</strong> {{ my_session_message }}
+        </div>
+        {% endif %}
+
+        <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin-bottom: 15px; max-width: 100%;">
+
+            <strong>Последние сообщения:</strong>
+            <ul style="margin: 0; padding-left: 20px;">
+                {% for m in messages|slice(-10, 10) %}
+                    <li>{{ m }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="container mt-2 mb-2">
+            <p class="description-text">{{ description }}</p>
+        </div>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                {{ macros.btn("Картинки", '/os_list/' ~ id ~ '?show=image', active_page == 'image') }}
+            </li>
+            <li class="nav-item ms-2">
+                {{ macros.btn("Описание", '/os_list/' ~ id ~ '?show=info', active_page == 'info') }}
+            </li>
+        </ul>
     </div>
+
+    <!-- Правая часть: история -->
+    <div style="width: 250px; flex-shrink: 0;">
+        <div style="background-color: #f5f5ff; padding: 10px; border-radius: 5px; word-break: break-word;">
+            <strong>Последние страницы которые вы посетили:</strong>
+            <ul style="padding-left: 15px;">
+                {% for url in history|reverse %}
+                    <li><a href="{{ url }}" style="text-decoration: none; word-break: break-word; overflow-wrap: anywhere;">{{ url }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            {{ macros.btn("Картинки", '/os_list/' ~ id ~ '?show=image', active_page == 'image') }}
-        </li>
-        <li class="nav-item ms-2">
-            {{ macros.btn("Описание", '/os_list/' ~ id ~ '?show=info', active_page == 'info') }}
-        </li>
-    </ul>
 </div>
 {% endblock %}
 
 
-{% block content %}{% endblock %}
+
+{% block content %}
+{% endblock %}

@@ -8,7 +8,10 @@ require_once "../controllers/SearchController.php";
 require_once "../controllers/OperationSystemsCreateController.php";
 require_once "../controllers/OperationSystemsDeleteController.php";
 require_once "../controllers/OperationSystemsUpdateController.php";
+require_once "../controllers/OperationSystemsTypeController.php";
 require_once "../middlewares/LoginRequiredMiddleware.php";
+require_once "../controllers/SetWelcomeController.php";
+
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
 $twig = new \Twig\Environment($loader, [
@@ -32,6 +35,8 @@ $router->add("/os_list/(?P<id>\d+)/delete", OperationSystemsDeleteController::cl
     ->middleware(new LoginRequiredMiddleware());
 $router->add("/os_list/(?P<id>\d+)/edit", OperationSystemsUpdateController::class)
     ->middleware(new LoginRequiredMiddleware());
-
+$router->add("/os_list/types", OperationSystemsTypeController::class)
+    ->middleware(new LoginRequiredMiddleware());
+$router->add("/set-welcome/", SetWelcomeController::class);
 
 $router->get_or_default(Controller404::class);

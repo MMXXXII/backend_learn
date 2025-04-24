@@ -2,46 +2,53 @@
 {% import 'macros.twig' as macros %}
 
 {% block content %}
+<div class="d-flex gap-4 align-items-start">
+    <!-- Левая часть — список карточек, обернутая отдельно -->
+    <div class="flex-grow-1">
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            {% for system in os_list %}
+            <div class="card position-relative" style="flex: 0 0 calc(30% - 1rem); max-width: calc(25% - 1rem);">
+                <div class="position-absolute" style="right: 4px; top: 4px; z-index: 1;">
+                    <form action="/os_list/{{ system.id }}/delete" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </form>
+                </div>
 
-<div class="d-flex justify-content-center flex-wrap gap-3">
+                <div class="position-absolute" style="right: 30px; top: 4px; z-index: 1; margin-right: 5px;">
+                    <form action="/os_list/{{ system.id }}/edit" method="GET">
+                        <button type="submit" class="btn btn-info btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </form>
+                </div>
 
-    {% for system in os_list %}
-    <div class="card position-relative" style="width: 18rem;"> {# фиксированная ширина — чтобы они не растягивались на
-        всю строку #}
-
-        <!-- Кнопка закрытия -->
-        <div class="position-absolute" style="right: 4px; top: 4px; z-index: 1;">
-            <form action="/os_list/{{ system.id }}/delete" method="POST">
-                <button type="submit" class="btn btn-danger btn-sm">
-                    <i class="fas fa-times"></i>
-                </button>
-            </form>
-        </div>
-
-        <!-- Кнопка обновления -->
-        <div class="position-absolute" style="right: 30px; top: 4px; z-index: 1; margin-right: 5px;">
-            <form action="/os_list/{{ system.id }}/edit" method="GET">
-                <button type="submit" class="btn btn-info btn-sm">
-                    <i class="fas fa-edit"></i>
-                </button>
-            </form>
-        </div>
-
-
-
-        <img src="{{ system.image }}" class="card-img-top" alt="{{ system.title }}">
-        <div class="card-body text-center">
-            <h5 class="card-title">
-                {{ macros.btn(system.title, '/os_list/' ~ system.id, true, "light") }}
-            </h5>
-            <div class="btn-container">
-                {{ macros.btn("Картинки", '/os_list/' ~ system.id ~ '?show=image', false) }}
-                {{ macros.btn("Описание", '/os_list/' ~ system.id ~ '?show=info', false) }}
+                <img src="{{ system.image }}" class="card-img-top" alt="{{ system.title }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">
+                        {{ macros.btn(system.title, '/os_list/' ~ system.id, true, "light") }}
+                    </h5>
+                    <div class="btn-container">
+                        {{ macros.btn("Картинки", '/os_list/' ~ system.id ~ '?show=image', false) }}
+                        {{ macros.btn("Описание", '/os_list/' ~ system.id ~ '?show=info', false) }}
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
-    {% endfor %}
 
+    <!-- Правая часть — история -->
+    <div style="width: 250px; flex-shrink: 0; min-height: 100%; position: sticky; top: 0;">
+        <div style="background-color: #f5f5ff; padding: 10px; border-radius: 5px; word-break: break-word;">
+            <strong>Последние страницы которые вы посетили:</strong>
+            <ul style="padding-left: 15px;">
+                {% for url in history|reverse %}
+                    <li><a href="{{ url }}" style="text-decoration: none; word-break: break-word; overflow-wrap: anywhere;">{{ url }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
-
 {% endblock %}

@@ -22,6 +22,11 @@ class ObjectController extends BaseOSTwigController
         $context['info'] = $data['info'];
         $context['id'] = $data['id'];
 
+        $context["my_session_message"] = isset($_SESSION['welcome_message']) ? $_SESSION['welcome_message'] : "";
+        $context["messages"] = isset($_SESSION['messages']) ? $_SESSION['messages'] : "";
+        $context["history"] = isset($_SESSION['history']) ? $_SESSION['history'] : [];
+
+        
         return $context;
     }
 }

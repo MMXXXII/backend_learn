@@ -1,14 +1,14 @@
 .card {
-    flex: 1 1 calc(20% - 15px); /* 5 колонок */
-    max-width: 18rem;
-    aspect-ratio: 1; /* Соотношение сторон 1:1 */
+    flex: 1 1 calc(33.33% - 15px); /* Три карточки на строке */
+    max-width: calc(33.33% - 15px); /* Максимальная ширина для 3 карточек */
     position: relative;
-    overflow: hidden; /* Чтобы ничего не выходило за границы карточки */
-    background-color: #ffffff; /* Белый фон */
+    overflow: hidden;
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
-    align-items: center; /* Выравнивание содержимого по верхнему краю */
+    align-items: center;
 }
+
 
 .card img {
     width: 40%; /* Ширина картинки будет 27% от ширины карточки */
@@ -44,21 +44,23 @@
     justify-content: flex-start; /* Выравнивание по левому краю */
     padding: 0; /* Убираем внутренние отступы */
 }
-
-
-
-@media (max-width: 1200px) {
-    .card { flex: 1 1 calc(25% - 15px); } /* 4 колонки */
+@media (max-width: 1000px) {
+    .card {
+        flex: 1 1 calc(33.33% - 15px); /* Три карточки на строке */
+    }
 }
 
 @media (max-width: 992px) {
-    .card { flex: 1 1 calc(33.33% - 15px); } /* 3 колонки */
+    .card {
+        flex: 1 1 calc(33.33% - 15px); /* Два объекта на строке на экранах среднего размера */
+    }
 }
 
 @media (max-width: 768px) {
-    .card { flex: 1 1 calc(50% - 15px); } /* 2 колонки */
+    .card {
+        flex: 1 1 100%; /* Один объект на строке на маленьких экранах */
+    }
 }
 
-@media (max-width: 576px) {
-    .card { flex: 1 1 100%; } /* 1 колонка */
-}
+
+
