@@ -44,4 +44,8 @@ $router->add("/os_list/types", OperationSystemsTypeController::class)
     ->middleware(new LoginRequiredMiddleware());
 $router->add("/set-welcome/", SetWelcomeController::class);
 
+
+
+
+
 $router->get_or_default(Controller404::class);

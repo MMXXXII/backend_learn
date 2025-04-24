@@ -8,7 +8,7 @@
 <div class="col-12">
     <div class="alert alert-info" style="margin-top: 1rem;">
         {{ message }}
-        <a href="/os_list/{{id}}">Открыть новый объект</a>
+        <a>Создан новый тип</a>
     </div>
 </div>
 {% endif %}
@@ -20,29 +20,9 @@
         <label class="form-label">Название</label>
         <input type="text" class="form-control" name="title" value="{{ object.title }}">
     </div>
-    <div class="col-md-4">
-        <label class="form-label">Краткое описание</label>
-        <input type="text" class="form-control" name="description" value="{{ object.description }}">
-    </div>
-    <div class="col-md-4">
-        <label class="form-label">Тип</label>
-        <select class="form-control" name="type">
-            {% for type in types %}
-            <option value="{{ type.type }}" {% if type.type == object.type %}selected{% endif %}>
-                {{ type.type|title }}
-            </option>
-            {% endfor %}
-        </select>
-        
-    </div>
     <div class="mb-3">
         <label for="formlabel" class="form-label">Картинка</label>
         <input class="form-control" type="file" name="image">
-    </div>
-
-    <div class="col-12 mt-3">
-        <label for="info" class="form-label">Полное описание</label>
-        <textarea name="info" id="info" placeholder="Полное описание..." class="form-control" rows="5">{{object.info}}</textarea>
     </div>
 
     <div class="col-12 text-end">

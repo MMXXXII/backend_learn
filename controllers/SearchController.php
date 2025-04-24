@@ -14,6 +14,11 @@ class SearchController extends BaseOSTwigController
         $title = isset($_GET['title']) ? $_GET['title'] : '';
         $info = isset($_GET['info']) ? $_GET['info'] : '';
 
+        // Получаем все типы из os_types для отображения в форме
+        $sql = "SELECT * FROM os_types";
+        $types = $this->pdo->query($sql)->fetchAll();
+        $context['types'] = $types;
+
         // SQL-запрос с фильтрацией по выбранным параметрам
         $sql = <<<EOL
 SELECT id, title

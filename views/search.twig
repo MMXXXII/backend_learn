@@ -8,8 +8,11 @@
         <label for="type" class="form-label">Тип</label>
         <select id="type" name="os_type" class="form-select">
             <option value="" {% if os_type == '' %}selected{% endif %}>Все</option>
-            <option value="unix-based" {% if os_type == 'unix-based' %}selected{% endif %}>Unix-Based</option>
-            <option value="windows-based" {% if os_type == 'windows-based' %}selected{% endif %}>Windows-Based</option>
+            {% for type in types %}
+                <option value="{{ type.type_name }}" {% if os_type == type.type_name %}selected{% endif %}>
+                    {{ type.type_name|title }}
+                </option>
+            {% endfor %}
         </select>
     </div>
 

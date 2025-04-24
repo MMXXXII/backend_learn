@@ -1,7 +1,8 @@
 <?php
 
-class BaseOSTwigController extends TwigBaseController{    
-    
+class BaseOSTwigController extends TwigBaseController
+{
+
     public function getContext(): array
     {
         $context = parent::getContext();
@@ -11,6 +12,12 @@ class BaseOSTwigController extends TwigBaseController{
         $types = $query->fetchAll();
         // создаем глобальную переменную в $twig, которая будет достпна из любого шаблона
         $context['types'] = $types;
+
+        $sql = "SELECT * FROM os_types";
+        $types = $this->pdo->query($sql)->fetchAll();
+        $context['types'] = $types;
+
+
         return $context;
     }
 }

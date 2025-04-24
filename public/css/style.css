@@ -1,20 +1,17 @@
-.d-flex {
-    display: flex;
-    flex-wrap: wrap; /* Позволяет карточкам переноситься на новую строку */
-    gap: 1rem; /* Отступы между карточками */
-}
-
 .card {
-    flex: 1 1 calc(33.33% - 1rem); /* По умолчанию три карточки на строке */
-    max-width: calc(33.33% - 1rem); /* Максимальная ширина для трех карточек */
-    box-sizing: border-box; /* Убирает влияние отступов на размер */
+    flex: 1 1 calc(33.333% - 1rem); 
+    max-width: calc(33.333% - 1rem);
+    min-width: 320px; /* Увеличим минимальную ширину */
+    box-sizing: border-box;
     position: relative;
     overflow: hidden;
     background-color: #ffffff;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* чтобы карточка не сжималась внутрь */
+    justify-content: flex-start;
     align-items: center;
-    min-width: 200px;
+    padding: 10px; /* добавим отступы */
+    border-radius: 10px;
 }
 
 /* Изображение внутри карточки */

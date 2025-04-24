@@ -2,45 +2,45 @@
 {% import 'macros.twig' as macros %}
 
 {% block content %}
-<div class="d-flex gap-4 align-items-start">
+<div class="main-container" style="display: grid; grid-template-columns: 1fr 250px; gap: 40px; align-items: start;">
+    
     <!-- Левая часть — список карточек -->
-    <div class="flex-grow-1">
-        <div class="d-flex justify-content-center flex-wrap gap-3">
-            {% for system in os_list %}
-            <div class="card position-relative">
-                <div class="position-absolute" style="right: 4px; top: 4px; z-index: 1;">
-                    <form action="/os_list/{{ system.id }}/delete" method="POST">
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </form>
-                </div>
+    <div class="cards-wrapper" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
 
-                <div class="position-absolute" style="right: 30px; top: 4px; z-index: 1; margin-right: 5px;">
-                    <form action="/os_list/{{ system.id }}/edit" method="GET">
-                        <button type="submit" class="btn btn-info btn-sm">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                    </form>
-                </div>
+        {% for system in os_list %}
+        <div class="card">
+            <div class="position-absolute" style="right: 4px; top: 4px; z-index: 1;">
+                <form action="/os_list/{{ system.id }}/delete" method="POST">
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </form>
+            </div>
 
-                <img src="{{ system.image }}" class="card-img-top" alt="{{ system.title }}">
-                <div class="card-body text-center">
-                    <h5 class="card-title">
-                        {{ macros.btn(system.title, '/os_list/' ~ system.id, true, "light") }}
-                    </h5>
-                    <div class="btn-container">
-                        {{ macros.btn("Картинки", '/os_list/' ~ system.id ~ '?show=image', false) }}
-                        {{ macros.btn("Описание", '/os_list/' ~ system.id ~ '?show=info', false) }}
-                    </div>
+            <div class="position-absolute" style="right: 30px; top: 4px; z-index: 1; margin-right: 5px;">
+                <form action="/os_list/{{ system.id }}/edit" method="GET">
+                    <button type="submit" class="btn btn-info btn-sm">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </form>
+            </div>
+
+            <img src="{{ system.image }}" class="card-img-top" alt="{{ system.title }}">
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    {{ macros.btn(system.title, '/os_list/' ~ system.id, true, "light") }}
+                </h5>
+                <div class="btn-container">
+                    {{ macros.btn("Картинки", '/os_list/' ~ system.id ~ '?show=image', false) }}
+                    {{ macros.btn("Описание", '/os_list/' ~ system.id ~ '?show=info', false) }}
                 </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
 
     <!-- Правая часть — история -->
-    <div style="width: 250px; flex-shrink: 0; min-height: 100%; position: sticky; top: 0;">
+    <div style="position: sticky; top: 0;">
         <div style="background-color: #f5f5ff; padding: 10px; border-radius: 5px; word-break: break-word;">
             <strong>Последние страницы которые вы посетили:</strong>
             <ul style="padding-left: 15px;">
