@@ -11,6 +11,8 @@ require_once "../controllers/OperationSystemsUpdateController.php";
 require_once "../controllers/OperationSystemsTypeController.php";
 require_once "../middlewares/LoginRequiredMiddleware.php";
 require_once "../controllers/SetWelcomeController.php";
+require_once "../controllers/LoginController.php";
+require_once "../controllers/LogoutController.php";
 
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
@@ -25,9 +27,12 @@ $pdo = new PDO("mysql:host=localhost;dbname=operation_systems;charset=utf8", "ro
 
 $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
-$router->add("/search", SearchController::class);
-$router->add("/os_list/(?P<id>\d+)", ObjectController::class);
-
+$router->add("/search", SearchController::class)
+    ->middleware(new LoginRequiredMiddleware());
+$router->add("/os_list/(?P<id>\d+)", ObjectController::class)
+    ->middleware(new LoginRequiredMiddleware());
+$router->add("/login", LoginController::class);
+$router->add("/logout", LogoutController::class);
 
 $router->add("/os_list/create", OperationSystemsCreateController::class)
     ->middleware(new LoginRequiredMiddleware());

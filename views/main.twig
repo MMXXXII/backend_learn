@@ -3,11 +3,11 @@
 
 {% block content %}
 <div class="d-flex gap-4 align-items-start">
-    <!-- Левая часть — список карточек, обернутая отдельно -->
+    <!-- Левая часть — список карточек -->
     <div class="flex-grow-1">
         <div class="d-flex justify-content-center flex-wrap gap-3">
             {% for system in os_list %}
-            <div class="card position-relative" style="flex: 0 0 calc(30% - 1rem); max-width: calc(25% - 1rem);">
+            <div class="card position-relative">
                 <div class="position-absolute" style="right: 4px; top: 4px; z-index: 1;">
                     <form action="/os_list/{{ system.id }}/delete" method="POST">
                         <button type="submit" class="btn btn-danger btn-sm">

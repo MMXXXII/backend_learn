@@ -23,8 +23,10 @@ abstract class BaseController
 
     public function process_response()
 {
-    session_set_cookie_params(60 * 60 * 30);
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_set_cookie_params(60 * 60 * 30);
+        session_start();
+    }
 
     $currentUrl = $_SERVER['REQUEST_URI'];
 
