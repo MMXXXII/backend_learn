@@ -11,6 +11,8 @@ class LoginController extends TwigBaseController
 
     public function post(array $context = []): void
     {
+        session_start();
+        
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
 
@@ -19,7 +21,12 @@ class LoginController extends TwigBaseController
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && $password === $user['password']) {
-            $_SESSION['is_logged'] = true;
+            session_start();
+            $_SESSION['user'] = [
+                'username' => $username,
+                'is_authenticated' => true
+            ];
+
             header("Location: /");
             exit;
         }

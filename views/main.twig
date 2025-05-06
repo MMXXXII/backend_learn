@@ -3,12 +3,17 @@
 
 {% block content %}
 <div class="main-container" style="display: grid; grid-template-columns: 1fr 250px; gap: 40px; align-items: start;">
-    
+
     <!-- Левая часть — список карточек -->
-    <div class="cards-wrapper" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
+    <div class="cards-wrapper"
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
 
         {% for system in os_list %}
         <div class="card">
+
+
+
+            {% if user.is_authenticated %}
             <div class="position-absolute" style="right: 4px; top: 4px; z-index: 1;">
                 <form action="/os_list/{{ system.id }}/delete" method="POST">
                     <button type="submit" class="btn btn-danger btn-sm">
@@ -24,6 +29,9 @@
                     </button>
                 </form>
             </div>
+            {% endif %}
+
+
 
             <img src="{{ system.image }}" class="card-img-top" alt="{{ system.title }}">
             <div class="card-body text-center">
@@ -45,7 +53,12 @@
             <strong>Последние страницы которые вы посетили:</strong>
             <ul style="padding-left: 15px;">
                 {% for url in history|reverse %}
-                    <li><a href="{{ url }}" style="text-decoration: none; word-break: break-word; overflow-wrap: anywhere;">{{ url }}</a></li>
+                <li>
+                    <a href="{{ url }}" style="text-decoration: none; word-break: break-word; overflow-wrap: anywhere;">
+                        {{ url  }}
+
+                    </a>
+                </li>
                 {% endfor %}
             </ul>
         </div>

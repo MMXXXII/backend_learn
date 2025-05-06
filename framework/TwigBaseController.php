@@ -21,17 +21,23 @@ class TwigBaseController extends BaseController
     // переопределяем функцию контекста
     // Переопределение метода getContext для добавления active_page
     public function getContext(): array
-    {
-        $context = parent::getContext(); // вызываем родительский метод
-        $context['title'] = $this->title; // добавляем title в контекст
+{
+    
+    $context = parent::getContext();
+    $context['title'] = $this->title;
 
-        // Добавляем active_page в контекст
-        $currentPage = isset($_GET['show']) ? $_GET['show'] : '';
-        $context['active_page'] = $currentPage;
+    $currentPage = $_GET['show'] ?? '';
+    $context['active_page'] = $currentPage;
 
-        
-        return $context;
-    }
+    // Добавим информацию о пользователе
+    $context['user'] = [
+        'is_authenticated' => isset($_SESSION['user']),
+        'username' => $_SESSION['user']['username'] ?? null
+    ];
+
+    return $context;
+}
+
 
 
     // функция гет, рендерит результат используя $template в качестве шаблона

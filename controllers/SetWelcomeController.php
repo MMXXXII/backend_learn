@@ -2,6 +2,9 @@
 
 class SetWelcomeController extends BaseController {
     public function get(array $context) {
+
+
+        
         $_SESSION['welcome_message'] = $_GET['message']; // добавил
         
 

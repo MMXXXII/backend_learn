@@ -1,25 +1,32 @@
-{% extends "__layout.twig" %} 
+{% extends "__layout.twig" %}
 {% import 'macros.twig' as macros %}
 
 {% block navigation %}
-<div class="d-flex gap-4">
-    <!-- Левая часть: сообщения и описание -->
+<div class="main-container" style="display: grid; grid-template-columns: 1fr 250px; gap: 40px; align-items: start;">
+
+    <!-- Левая часть -->
     <div class="flex-grow-1 container mt-2 mb-2" style="flex: 1;">
+        </ul>
         {% if my_session_message %}
-        <div style="background-color: #e9f7fe; border: 1px solid #bde5f8; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 100%;">
-            <strong>Сообщение:</strong> {{ my_session_message }}
-        </div>
+        <script>
+            const url = new URL(window.location.href);
+            const message = url.searchParams.get("message");
+            if (message) {
+                const cleanUrl = window.location.pathname;
+                history.replaceState(null, "", cleanUrl);
+            }
+        </script>
         {% endif %}
 
-        <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin-bottom: 15px; max-width: 100%;">
+
+        <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
             <strong>Последние сообщения:</strong>
-            <ul style="margin: 0; padding-left: 20px;">
+            <ul>
                 {% for m in messages|slice(-10, 10) %}
-                    <li>{{ m }}</li>
+                <li>{{ m }}</li>
                 {% endfor %}
             </ul>
         </div>
-
         <div class="container mt-2 mb-2">
             <p class="description-text">{{ description }}</p>
         </div>
@@ -34,13 +41,18 @@
         </ul>
     </div>
 
-    <!-- Правая часть: история -->
-    <div style="position: sticky; top: 0; width: 250px; flex-shrink: 0;">
+    <!-- Правая часть — история -->
+    <div style="position: sticky; top: 0;">
         <div style="background-color: #f5f5ff; padding: 10px; border-radius: 5px; word-break: break-word;">
             <strong>Последние страницы которые вы посетили:</strong>
             <ul style="padding-left: 15px;">
                 {% for url in history|reverse %}
-                    <li><a href="{{ url }}" style="text-decoration: none; word-break: break-word; overflow-wrap: anywhere;">{{ url }}</a></li>
+                <li>
+                    <a href="{{ url }}" style="text-decoration: none; word-break: break-word; overflow-wrap: anywhere;">
+                        {{ url  }}
+
+                    </a>
+                </li>
                 {% endfor %}
             </ul>
         </div>

@@ -1,9 +1,11 @@
 <?php
 
-class LogoutController extends TwigBaseController {
-    public function get(array $context = []): void {
+class LogoutController extends TwigBaseController
+{
+    public function get(array $context = []): void
+    {
         session_start();
-        $_SESSION["is_logged"] = false;
+        unset($_SESSION['user']);
         header("Location: /login");
         exit;
     }

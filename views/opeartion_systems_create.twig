@@ -25,16 +25,15 @@
         <input type="text" class="form-control" name="description" value="{{ object.description }}">
     </div>
     <div class="col-md-4">
-        <label class="form-label">Тип</label>
-        <select class="form-control" name="type">
+        <label for="type" class="form-label">Тип</label>
+        <select id="type" name="os_type" class="form-select">
+            <option value="" {% if os_type == '' %}selected{% endif %}>Все</option>
             {% for type in types %}
-            <option value="{{ type.type_name }}" {% if type.type_name == object.type %}selected{% endif %}>
-                {{ type.type_name|title }}
-            </option>
-            
+                <option value="{{ type.type_name }}" {% if os_type == type.type_name %}selected{% endif %}>
+                    {{ type.type_name|title }}
+                </option>
             {% endfor %}
         </select>
-        
     </div>
     <div class="mb-3">
         <label for="formlabel" class="form-label">Картинка</label>
