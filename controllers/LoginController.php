@@ -7,12 +7,9 @@ class LoginController extends TwigBaseController
         echo $this->twig->render("login.twig", []);
     }
 
-
-
     public function post(array $context = []): void
     {
-        session_start();
-        
+        // session_start() вызывается один раз, на уровне process_response()
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
 
@@ -21,7 +18,6 @@ class LoginController extends TwigBaseController
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && $password === $user['password']) {
-            session_start();
             $_SESSION['user'] = [
                 'username' => $username,
                 'is_authenticated' => true

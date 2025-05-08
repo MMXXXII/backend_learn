@@ -8,18 +8,14 @@
     <div class="flex-grow-1 container mt-2 mb-2" style="flex: 1;">
         </ul>
         {% if my_session_message %}
-        <script>
-            const url = new URL(window.location.href);
-            const message = url.searchParams.get("message");
-            if (message) {
-                const cleanUrl = window.location.pathname;
-                history.replaceState(null, "", cleanUrl);
-            }
-        </script>
+        <div
+            style="background-color: #e9f7fe; border: 1px solid #bde5f8; padding: 10px; margin-bottom: 10px; border-radius: 5px; max-width: 100%; word-wrap: break-word;">
+            <strong>Сообщение:</strong> {{ my_session_message }}
+        </div>
         {% endif %}
 
-
-        <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+        <div
+            style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin-bottom: 15px; word-wrap: break-word;">
             <strong>Последние сообщения:</strong>
             <ul>
                 {% for m in messages|slice(-10, 10) %}
@@ -27,6 +23,7 @@
                 {% endfor %}
             </ul>
         </div>
+
         <div class="container mt-2 mb-2">
             <p class="description-text">{{ description }}</p>
         </div>
@@ -49,7 +46,7 @@
                 {% for url in history|reverse %}
                 <li>
                     <a href="{{ url }}" style="text-decoration: none; word-break: break-word; overflow-wrap: anywhere;">
-                        {{ url  }}
+                        {{ url }}
 
                     </a>
                 </li>

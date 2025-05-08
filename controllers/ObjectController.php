@@ -9,7 +9,6 @@ class ObjectController extends BaseOSTwigController
     {
         $context = parent::getContext();
 
-
         // Запрос данных из базы
         $query = $this->pdo->prepare("SELECT description, image, info, id, title FROM os_list WHERE id = :my_id");
         $query->bindValue("my_id", $this->params['id']);
@@ -17,17 +16,22 @@ class ObjectController extends BaseOSTwigController
 
         $data = $query->fetch();
 
-        $context['description'] = $data['description'];
-        $context['image'] = $data['image'];
-        $context['info'] = $data['info'];
+        // Если данные не найдены, перенаправляем на страницу 404
+        if (!$data) {
+            header("Location: /404");
+            exit;
+        }
+
+        // Если данные найдены, заполняем контекст
+        $context['description'] = $data['description'] ?? "Описание не найдено";
+        $context['image'] = $data['image'] ?? "";
+        $context['info'] = $data['info'] ?? "";
         $context['id'] = $data['id'];
-        $context['title'] = $data['title'];
+        $context['title'] = $data['title'] ?? "Без названия";
 
-
-        $context["my_session_message"] = isset($_SESSION['welcome_message']) ? $_SESSION['welcome_message'] : "";
-        $context["messages"] = isset($_SESSION['messages']) ? $_SESSION['messages'] : "";
-        $context["history"] = isset($_SESSION['history']) ? $_SESSION['history'] : [];
-
+        $context["my_session_message"] = $_SESSION['welcome_message'] ?? "";
+        $context["messages"] = $_SESSION['messages'] ?? [];
+        $context["history"] = $_SESSION['history'] ?? [];
 
         return $context;
     }

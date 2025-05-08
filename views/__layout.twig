@@ -42,7 +42,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/os_list/types">Типы</a>
                     </li>
-                    <form class="d-flex ms-3" onsubmit="submitMessage(event)">
+                    <form class="d-flex ms-3" action="/set-welcome/" method="get">
                         <input type="text" id="welcomeMessage" name="message" class="form-control me-2"
                             placeholder="Введите сообщение">
 
@@ -53,7 +53,7 @@
 
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                        <a class="nav-link" href="/logout" data-bs-toggle="modal" data-bs-target="#logoutModal">
                             <i class="fa-solid fa-right-from-bracket"></i> Выход
                         </a>
                     </li>
