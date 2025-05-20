@@ -31,7 +31,7 @@ public function post(array $context) {
 
     $title = $_POST['title'];
     $description = $_POST['description'];
-    $type = $_POST['type'];
+    $type = $_POST['os_type'];
     $info = $_POST['info'];
 
     $image_url = null;

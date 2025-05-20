@@ -21,42 +21,31 @@ abstract class BaseController
     }
 
 
-    public function process_response()
+public function process_response()
 {
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    // сначала — сессия!
     if (session_status() === PHP_SESSION_NONE) {
         session_set_cookie_params(60 * 60 * 30);
         session_start();
     }
 
-    $currentUrl = $_SERVER['REQUEST_URI'];
-    $method = $_SERVER['REQUEST_METHOD'];
-    $context = $this->getContext(); // сначала получить context
+    // теперь можно безопасно работать с контекстом
+    $context = $this->getContext();
 
-    // инициализируем $_SESSION['history'] как пустой массив, если его нет
-    if (!isset($_SESSION['history'])) {
-        $_SESSION['history'] = [];
-    }
+    // middleware по истории
+    $middleware = new HistoryMiddleware();
+    $context = $middleware->handle($context);
 
-    // потом добавить в него history
-    if (isset($_SESSION['history'])) {
-        $context['history'] = array_map('urldecode', $_SESSION['history']);
-    }
-
-    // добавляем текущий URL в историю, если его там нет
-    if (end($_SESSION['history']) !== $currentUrl) {
-        $_SESSION['history'][] = $currentUrl;
-    }
-
-    // ограничиваем историю до последних 10 URL
-    $_SESSION['history'] = array_slice($_SESSION['history'], -10);
-
-    // обработка GET и POST запросов
-    if ($method == 'GET') {
+    if ($method === 'GET') {
         $this->get($context);
-    } else if ($method == 'POST') {
+    } else if ($method === 'POST') {
         $this->post($context);
     }
 }
+
+
 
 
     public function get(array $context) {} // ну и сюда добавил в качестве параметра 

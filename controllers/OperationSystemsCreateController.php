@@ -13,7 +13,7 @@ class OperationSystemsCreateController extends BaseOSTwigController {
     public function post($context) {
         $title = $_POST['title'];
         $description = $_POST['description'];
-        $type = $_POST['type'];
+        $type = $_POST['os_type'];
         $info = $_POST['info'];
         
         // вытащил значения из $_FILES

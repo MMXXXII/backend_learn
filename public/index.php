@@ -14,7 +14,12 @@ require_once "../middlewares/LoginRequiredMiddleware.php";
 require_once "../controllers/SetWelcomeController.php";
 require_once "../controllers/LoginController.php";
 require_once "../controllers/LogoutController.php";
+require_once "../middlewares/HistoryMiddleware.php";
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_set_cookie_params(60 * 60 * 30);
+    session_start();
+}
 
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../views');
 $twig = new \Twig\Environment($loader, [
